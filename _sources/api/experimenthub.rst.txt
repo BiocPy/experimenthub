@@ -1,0 +1,29 @@
+experimenthub package
+=====================
+
+Submodules
+----------
+
+experimenthub.record module
+---------------------------
+
+.. automodule:: experimenthub.record
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+experimenthub.registry module
+-----------------------------
+
+.. automodule:: experimenthub.registry
+   :members:
+   :show-inheritance:
+   :undoc-members:
+
+Module contents
+---------------
+
+.. automodule:: experimenthub
+   :members:
+   :show-inheritance:
+   :undoc-members:
