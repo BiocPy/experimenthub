@@ -5,7 +5,7 @@
 
 **ExperimentHub** provides an interface to access and manage data from the Bioconductor [ExperimentHub](https://bioconductor.org/packages/ExperimentHub/) service directly in Python.
 
-It is designed to work within the **BiocPy** ecosystem, converting R data objects (like `SingleCellExperiment` or `SummarizedExperiment`) into their Python equivalents (e.g., `AnnData` or `SummarizedExperiment`) using [rds2py](https://github.com/biocpy/rds2py).
+It is designed to work within the **BiocPy** ecosystem, converting R data objects (like `SingleCellExperiment` or `SummarizedExperiment`) into their Python equivalents (e.g., `SummarizedExperiment`) using [rds2py](https://github.com/biocpy/rds2py).
 
 > [!NOTE]
 >
@@ -49,8 +49,8 @@ results = eh.search("mus musculus")
 for record in results[:5]:
     print(f"{record.ehub_id}: {record.title}")
 # Output:
-# EH1000: Mouse Gastrulation Data
-# EH1001: Thymus Single Cell Data
+# EH1041: Brain scRNA-seq data, sample ...,
+# EH1042: Brain scRNA-seq data, gene ...,
 # ...
 ```
 
@@ -59,13 +59,20 @@ for record in results[:5]:
 You can retrieve detailed metadata for a specific ID.
 
 ```py
-record = eh.get_record("EH1000")
+record = eh.get_record("EH4663")
 
 print(f"Title: {record.title}")
 print(f"Species: {record.species}")
 print(f"Genome: {record.genome}")
 print(f"Description: {record.description}")
 print(f"R Class: {record.preparer_dataclass}")
+
+## Output:
+# Title: Lohoff biorXiv spatial coordinates (sample 2)
+# Species: Mus musculus
+# Genome: mm10
+# Description: Cell spatial coordinates for sample 2 for the E8.5 seqFISH dataset from biorXiv
+# R Class: character
 ```
 
 ### Loading Data

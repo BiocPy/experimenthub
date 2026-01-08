@@ -2,7 +2,7 @@
 
 **ExperimentHub** provides an interface to access and manage data from the Bioconductor [ExperimentHub](https://bioconductor.org/packages/ExperimentHub/) service directly in Python.
 
-It is designed to work within the **BiocPy** ecosystem, converting R data objects (like `SingleCellExperiment` or `SummarizedExperiment`) into their Python equivalents (e.g., `AnnData` or `SummarizedExperiment`) using [rds2py](https://github.com/biocpy/rds2py).
+It is designed to work within the **BiocPy** ecosystem, converting R data objects (like `SingleCellExperiment` or `SummarizedExperiment`) into their Python equivalents (e.g., `SummarizedExperiment`) using [rds2py](https://github.com/biocpy/rds2py).
 
 > [!NOTE]
 >
