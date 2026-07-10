@@ -38,7 +38,7 @@ class ExperimentHubRegistry:
         "multiassayexperiment",
     }
 
-    SUPPORTED_EXTENSIONS = ".rds"  # , ".rda", ".rdata"
+    SUPPORTED_EXTENSIONS = (".rds", ".rda", ".rdata")
 
     def __init__(
         self,
@@ -210,9 +210,12 @@ class ExperimentHubRegistry:
         try:
             import rds2py
         except ImportError:
-            raise ImportError(f"The resource {ehub_id} requires 'rds2py' to be loaded. " "Please install it via pip.")
+            raise ImportError(f"The resource {ehub_id} requires 'rds2py' to be loaded. Please install it via pip.")
 
         try:
+            if path.lower().endswith(".rda") or path.lower().endswith(".rdata"):
+                return rds2py.read_rda(path)
+
             return rds2py.read_rds(path)
         except Exception as e:
             raise RuntimeError(f"Failed to load R data from {path}: {e}")
