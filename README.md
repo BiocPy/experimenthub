@@ -98,6 +98,12 @@ print(data)
 # embryo1_Pos28_cell99_z5  -1.394992277928857  2.5812717935734355             5
 ```
 
+### Supported File Formats
+
+ExperimentHub supports downloading and parsing both `.rds` and `.rda` / `.rdata` files.
+- `.rds` files return the parsed Python equivalent object directly (e.g. `SummarizedExperiment`).
+- `.rda` or `.rdata` files return a Python dictionary mapping serialized variable names to their parsed Python object representations.
+
 <!-- biocsetup-notes -->
 
 ## Note

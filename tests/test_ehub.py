@@ -3,7 +3,7 @@ from biocframe import BiocFrame
 from experimenthub.registry import ExperimentHubRegistry
 
 
-def test_real():
+def test_live_rds():
     ehub = ExperimentHubRegistry()
     assert len(ehub.list_ids()) > 0
 
@@ -15,3 +15,16 @@ def test_real():
     data = ehub.load(ehub_id)
     assert isinstance(data, BiocFrame)
     assert len(data) == 8425
+
+
+def test_live_rda():
+    ehub = ExperimentHubRegistry()
+
+    ehub_id = "EH7718"
+    rec = ehub.get_record(ehub_id)
+    assert rec is not None
+    assert rec.ehub_id == ehub_id
+
+    data = ehub.load(ehub_id)
+    assert isinstance(data, dict)
+    assert len(data) == 1
