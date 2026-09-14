@@ -1,7 +1,7 @@
 import os
 import sqlite3
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Union
+from typing import Any
 
 from pybiocfilecache import BiocFileCache
 
@@ -24,7 +24,6 @@ class ExperimentHubRegistry:
         "matrix",
         "numeric",
         "int",
-        "matrix",
         "dataframe",
         "data.frame",
         "data frame",
@@ -42,7 +41,7 @@ class ExperimentHubRegistry:
 
     def __init__(
         self,
-        cache_dir: Optional[Union[str, Path]] = None,
+        cache_dir: str | Path | None = None,
         force: bool = False,
     ) -> None:
         """Initialize the ExperimentHub registry.
@@ -62,7 +61,7 @@ class ExperimentHubRegistry:
         self._cache_dir.mkdir(parents=True, exist_ok=True)
         self._bfc = BiocFileCache(self._cache_dir)
 
-        self._registry_map: Dict[str, ExperimentHubRecord] = {}
+        self._registry_map: dict[str, ExperimentHubRecord] = {}
 
         self._initialize_registry(force=force)
 
@@ -135,7 +134,7 @@ class ExperimentHubRegistry:
             record = ExperimentHubRecord.from_db_row(row)
             self._registry_map[record.ehub_id] = record
 
-    def list_ids(self) -> List[str]:
+    def list_ids(self) -> list[str]:
         """List all available ExperimentHub IDs (e.g., 'EH1', 'EH123')."""
         return sorted(list(self._registry_map.keys()), key=lambda x: int(x[2:]))
 
@@ -146,7 +145,7 @@ class ExperimentHubRegistry:
 
         return self._registry_map[ehub_id]
 
-    def search(self, query: str) -> List[ExperimentHubRecord]:
+    def search(self, query: str) -> list[ExperimentHubRecord]:
         """Search for resources matching the query string."""
         q = query.lower()
         results = []
@@ -220,7 +219,7 @@ class ExperimentHubRegistry:
         except Exception as e:
             raise RuntimeError(f"Failed to load R data from {path}: {e}")
 
-    def _get_filepath(self, resource: Any) -> Optional[str]:
+    def _get_filepath(self, resource: Any) -> str | None:
         """Helper to extract absolute path from a BiocFileCache resource."""
         if hasattr(resource, "rpath"):
             rel_path = str(resource.rpath)
