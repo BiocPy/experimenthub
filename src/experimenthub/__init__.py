@@ -15,5 +15,5 @@ except PackageNotFoundError:  # pragma: no cover
 finally:
     del version, PackageNotFoundError
 
-from .registry import ExperimentHubRegistry
 from .record import ExperimentHubRecord
+from .registry import ExperimentHubRegistry
